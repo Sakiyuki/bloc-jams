@@ -139,10 +139,10 @@ var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause">
 var currentlyPlayingSong = null;
 
  window.onload = function() {
-//     select album image 
-//     on click call setCurrentAlbum with name of new album     
+   
      setCurrentAlbum(albumPicasso);
      
+//     albums after 1st don't release play
     var albums = [albumPicasso, albumMarconi, albumMarconi2];
     var currentAlbumIndex = 1;
      
@@ -151,8 +151,8 @@ var currentlyPlayingSong = null;
         currentAlbumIndex++;
          if (currentAlbumIndex > 2) {
              currentAlbumIndex = 0;
-         }
-     })
+         };
+     });
      
      songListContainer.addEventListener('mouseover', function(event) {
          // Only target individual song rows during event delegation
