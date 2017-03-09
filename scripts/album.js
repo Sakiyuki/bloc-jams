@@ -46,7 +46,7 @@ var createSongRow = function(songNumber, songName, songLength) {
  
 		 var $row= $(template);
 
-		 var clickHandler = function() {
+	var clickHandler = function() {
 			 
 		 var songNumber = parseInt($(this).attr('data-song-number'), 10);
 		  currentlyPlayingSongNumber = currentlyPlayingSongNumber ? 
@@ -146,6 +146,20 @@ var playerBarPauseButton = '<span class="ion-pause"></span>';
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
+var $playPauseControl = $('.main-controls .play-pause');
+
+var togglePlayFromPlayerBar = function() {
+			var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber)
+			if (currentSoundFile.isPaused()) {
+						$(currentlyPlayingCell).html(pauseButtonTemplate);
+					  $('.main-controls .play-pause').html(playerBarPauseButton);
+						currentSoundFile.play();
+				} else {
+						$(currentlyPlayingCell).html(playButtonTemplate);
+						$('.main-controls .play-pause').html(playerBarPlayButton);
+						currentSoundFile.pause();   
+		  }
+}
 
 var nextSong = function() {
 	var getLastSongNumber = function(index) {
@@ -222,6 +236,7 @@ $(document).ready(function() {
 	
 	$previousButton.click(previousSong);
 	$nextButton.click(nextSong);  
+	$playPauseControl.click(togglePlayFromPlayerBar);
   //     albums after 1st don't release play
    var albums = [albumPicasso, albumMarconi];
    var currentAlbumIndex = 1;
